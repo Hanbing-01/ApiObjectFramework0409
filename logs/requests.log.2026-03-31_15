@@ -1,0 +1,431 @@
+2026-03-31 15:07:56,425 INFO [apiautotest] [conftest.py (aalogger_init:17) - 日志初始化成功]
+2026-03-31 15:15:07,568 INFO [apiautotest] [conftest.py (aalogger_init:17) - 日志初始化成功]
+2026-03-31 15:16:17,642 INFO [apiautotest] [conftest.py (aalogger_init:17) - 日志初始化成功]
+2026-03-31 15:16:17,643 DEBUG [apiautotest] [client.py (send:22) - =================================================]
+2026-03-31 15:16:17,643 DEBUG [apiautotest] [client.py (send:23) - 接口url:http://82.156.74.26:7002/possport/login]
+2026-03-31 15:16:17,643 DEBUG [apiautotest] [client.py (send:24) - 接口method:post]
+2026-03-31 15:16:17,643 DEBUG [apiautotest] [client.py (send:25) - 接口headers:None]
+2026-03-31 15:16:17,643 DEBUG [apiautotest] [client.py (send:26) - 接口params:None]
+2026-03-31 15:16:17,646 DEBUG [apiautotest] [client.py (send:27) - 接口data:{'username': 'shamo', 'password': '123456', 'capcha': '1512', 'uuid': 'asdasdasdasd'}]
+2026-03-31 15:16:17,646 DEBUG [apiautotest] [client.py (send:28) - 接口json:None]
+2026-03-31 15:16:17,646 DEBUG [apiautotest] [client.py (send:29) - 接口files:None]
+2026-03-31 15:16:38,698 ERROR [apiautotest] [client.py (send:43) - 接口发起失败]
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+  File "D:\python3.12.10\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.12.10\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+  File "D:\python3.12.10\Lib\http\client.py", line 1037, in send
+    self.connect()
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<HTTPConnection(host='82.156.74.26', port=7002) at 0x18d362a6720>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x18d362a6720>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\common\client.py", line 32, in send
+    self.resp = RequestsClient.session.request(method=self.method,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x18d362a6720>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+2026-03-31 15:16:39,103 DEBUG [apiautotest] [client.py (send:22) - =================================================]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:23) - 接口url:http://82.156.74.26:7002/possport/login]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:24) - 接口method:post]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:25) - 接口headers:None]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:26) - 接口params:None]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:27) - 接口data:{'username': 'shamo', 'password': '123456', 'capcha': '1512', 'uuid': 'asdasdasdasd'}]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:28) - 接口json:None]
+2026-03-31 15:16:39,104 DEBUG [apiautotest] [client.py (send:29) - 接口files:None]
+2026-03-31 15:17:00,133 ERROR [apiautotest] [client.py (send:43) - 接口发起失败]
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+  File "D:\python3.12.10\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.12.10\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+  File "D:\python3.12.10\Lib\http\client.py", line 1037, in send
+    self.connect()
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<HTTPConnection(host='82.156.74.26', port=7002) at 0x18d3645f500>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x18d3645f500>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\common\client.py", line 32, in send
+    self.resp = RequestsClient.session.request(method=self.method,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x18d3645f500>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+2026-03-31 15:22:19,920 INFO [apiautotest] [conftest.py (aalogger_init:19) - 日志初始化成功]
+2026-03-31 15:22:19,920 DEBUG [apiautotest] [client.py (send:22) - =================================================]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:23) - 接口url:http://82.156.74.26:7002/possport/login]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:24) - 接口method:post]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:25) - 接口headers:None]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:26) - 接口params:None]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:27) - 接口data:{'username': 'shamo', 'password': '123456', 'capcha': '1512', 'uuid': 'asdasdasdasd'}]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:28) - 接口json:None]
+2026-03-31 15:22:19,921 DEBUG [apiautotest] [client.py (send:29) - 接口files:None]
+2026-03-31 15:22:40,959 ERROR [apiautotest] [client.py (send:43) - 接口发起失败]
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+  File "D:\python3.12.10\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.12.10\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+  File "D:\python3.12.10\Lib\http\client.py", line 1037, in send
+    self.connect()
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<HTTPConnection(host='82.156.74.26', port=7002) at 0x140e32dffb0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x140e32dffb0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\common\client.py", line 32, in send
+    self.resp = RequestsClient.session.request(method=self.method,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x140e32dffb0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+2026-03-31 15:22:41,239 DEBUG [apiautotest] [client.py (send:22) - =================================================]
+2026-03-31 15:22:41,239 DEBUG [apiautotest] [client.py (send:23) - 接口url:http://82.156.74.26:7002/possport/login]
+2026-03-31 15:22:41,240 DEBUG [apiautotest] [client.py (send:24) - 接口method:post]
+2026-03-31 15:22:41,240 DEBUG [apiautotest] [client.py (send:25) - 接口headers:None]
+2026-03-31 15:22:41,240 DEBUG [apiautotest] [client.py (send:26) - 接口params:None]
+2026-03-31 15:22:41,240 DEBUG [apiautotest] [client.py (send:27) - 接口data:{'username': 'shamo', 'password': '123456', 'capcha': '1512', 'uuid': 'asdasdasdasd'}]
+2026-03-31 15:22:41,240 DEBUG [apiautotest] [client.py (send:28) - 接口json:None]
+2026-03-31 15:22:41,240 DEBUG [apiautotest] [client.py (send:29) - 接口files:None]
+2026-03-31 15:23:02,291 ERROR [apiautotest] [client.py (send:43) - 接口发起失败]
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+  File "D:\python3.12.10\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.12.10\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+  File "D:\python3.12.10\Lib\http\client.py", line 1037, in send
+    self.connect()
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<HTTPConnection(host='82.156.74.26', port=7002) at 0x140e35c2a80>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x140e35c2a80>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\common\client.py", line 32, in send
+    self.resp = RequestsClient.session.request(method=self.method,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /possport/login (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x140e35c2a80>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+2026-03-31 15:23:49,087 INFO [apiautotest] [conftest.py (aalogger_init:19) - 日志初始化成功]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:22) - =================================================]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:23) - 接口url:http://82.156.74.26:7002/trade/carts/buy]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:24) - 接口method:post]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:25) - 接口headers:None]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:26) - 接口params:None]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:27) - 接口data:{'sku_id': 1, 'num': 32, 'activity_id': ''}]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:28) - 接口json:None]
+2026-03-31 15:23:49,089 DEBUG [apiautotest] [client.py (send:29) - 接口files:None]
+2026-03-31 15:24:10,144 ERROR [apiautotest] [client.py (send:43) - 接口发起失败]
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+  File "D:\python3.12.10\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.12.10\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+  File "D:\python3.12.10\Lib\http\client.py", line 1037, in send
+    self.connect()
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<HTTPConnection(host='82.156.74.26', port=7002) at 0x2864c3d6cf0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /trade/carts/buy (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x2864c3d6cf0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\common\client.py", line 32, in send
+    self.resp = RequestsClient.session.request(method=self.method,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /trade/carts/buy (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x2864c3d6cf0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+2026-03-31 15:24:10,412 DEBUG [apiautotest] [client.py (send:22) - =================================================]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:23) - 接口url:http://82.156.74.26:7002/trade/carts/buy]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:24) - 接口method:post]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:25) - 接口headers:None]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:26) - 接口params:None]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:27) - 接口data:{'sku_id': 2, 'num': 3, 'activity_id': ''}]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:28) - 接口json:None]
+2026-03-31 15:24:10,413 DEBUG [apiautotest] [client.py (send:29) - 接口files:None]
+2026-03-31 15:24:31,454 ERROR [apiautotest] [client.py (send:43) - 接口发起失败]
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 204, in _new_conn
+    sock = connection.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 85, in create_connection
+    raise err
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 493, in _make_request
+    conn.request(
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 500, in request
+    self.endheaders()
+  File "D:\python3.12.10\Lib\http\client.py", line 1333, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "D:\python3.12.10\Lib\http\client.py", line 1093, in _send_output
+    self.send(msg)
+  File "D:\python3.12.10\Lib\http\client.py", line 1037, in send
+    self.connect()
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 331, in connect
+    self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connection.py", line 213, in _new_conn
+    raise ConnectTimeoutError(
+urllib3.exceptions.ConnectTimeoutError: (<HTTPConnection(host='82.156.74.26', port=7002) at 0x2864c6b20f0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\urllib3\util\retry.py", line 535, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /trade/carts/buy (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x2864c6b20f0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\pycharm\ApiObjectFramework\common\client.py", line 32, in send
+    self.resp = RequestsClient.session.request(method=self.method,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\pycharm\ApiObjectFramework\.venv\Lib\site-packages\requests\adapters.py", line 665, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPConnectionPool(host='82.156.74.26', port=7002): Max retries exceeded with url: /trade/carts/buy (Caused by ConnectTimeoutError(<HTTPConnection(host='82.156.74.26', port=7002) at 0x2864c6b20f0>, 'Connection to 82.156.74.26 timed out. (connect timeout=None)'))
