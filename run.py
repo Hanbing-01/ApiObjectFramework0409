@@ -29,3 +29,4 @@ if __name__ == '__main__':
     os.system('allure serve report/data')
     # A提交的注释
     # 在提交一次
+    # B修改相同地方
