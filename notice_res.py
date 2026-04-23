@@ -93,35 +93,56 @@ class DingDingNotice:
                          url=url,
                          json = json)
 class JenkinsStatus:
+    # 1. 构造方法接收 用户名 和 token
+    def __init__(self, username, token):
+        self.username = username
+        self.token = token
+
     def send(self,build_url):
         url = f'{build_url}/api/json'
         method = 'get'
-        resp = requests.request(method=method,url=url)
+        # 2. 请求时带上 auth —— 标准、规范、公司通用写法
+        resp = requests.request(
+            method=method,
+            url=url,
+            auth=(self.username, self.token)  # 👈 这就是你要的认证
+        )
+        print(resp)
         return resp
-if __name__ == '__main__':
-    args = sys.argv
-    build_url = args[1]
-    notice_type = args[2]
+# ==========================================================================
 
-    # ===================== 这里是我加的容错 =====================
+if __name__ == '__main__':
+    # args = sys.argv
+    # build_url = args[1]
+    # notice_type = args[2]
+
+    build_url = 'http://118.89.124.97:8080/job/apiautotest20260417/49'
+    notice_type = 'feishu'
+
+    # ===================== 这里填写你自己的 Jenkins 信息 =====================
+    USERNAME = "admin"          # 你的Jenkins账号
+    API_TOKEN = "11fb21b7150d2dfa09eccc27eed6e260f5"  # 你的API token
+    # ==========================================================================
+
     try:
-        resp = JenkinsStatus().send(build_url)
-        # 如果状态码不是200，直接抛异常
+        # ===================== 调用时传入 =====================
+        resp = JenkinsStatus(USERNAME, API_TOKEN).send(build_url)
+        # ======================================================
+
         if resp.status_code != 200:
-            raise Exception(f"Jenkins API 请求失败，状态码：{resp.status_code}")
+            raise Exception(f"请求失败，状态码：{resp.status_code}")
 
         user = jsonpath.jsonpath(resp.json(), '$..shortDescription')[0]
         result = jsonpath.jsonpath(resp.json(), '$..result')[0]
         fullDisplayName = jsonpath.jsonpath(resp.json(), '$..fullDisplayName')[0]
+        print(user)
+        print(fullDisplayName)
 
     except Exception as e:
-        # 出错了也不让脚本崩！
         print(f"获取 Jenkins 信息失败: {e}")
         user = "未知用户"
         result = "FAILURE"
         fullDisplayName = "未知任务 #1"
-
-    # ==========================================================
 
     job_name = fullDisplayName.split(' #')[0]
     build_number = fullDisplayName.split(' #')[1]
@@ -132,24 +153,3 @@ if __name__ == '__main__':
         DingDingNotice().send(job_name, build_number, result, user, build_url)
     elif notice_type == 'feishu':
         FeiShuNotice().send(job_name, build_number, result, user, build_url)
-
-# if __name__ == '__main__':
-#     args = sys.argv # 表示获取终端执行时传递的参数
-#     build_url = args[1]
-#     notice_type = args[2] # 通知类型，是飞书还是钉钉还是企微
-#     # job_name = 'apiautotest20230805'
-#     # build_number = 3
-#     # build_url = 'http://192.168.0.188:8080/job/apiautotest20230805/3'
-#     resp = JenkinsStatus().send(build_url)
-#     user = jsonpath.jsonpath(resp.json(),'$..shortDescription')[0]
-#     result = jsonpath.jsonpath(resp.json(), '$..result')[0]
-#     fullDisplayName = jsonpath.jsonpath(resp.json(),'$..fullDisplayName')[0]
-#     # apiautotest20230805 #3
-#     job_name = fullDisplayName.split(' #')[0]
-#     build_number = fullDisplayName.split(' #')[1]
-#     if notice_type == 'wx':
-#         WxNotice().send(job_name,build_number,result,user,build_url)
-#     elif notice_type == 'dd':
-#         DingDingNotice().send(job_name,build_number,result,user,build_url)
-#     elif notice_type == 'feishu':
-#         FeiShuNotice().send(job_name,build_number,result,user,build_url)
