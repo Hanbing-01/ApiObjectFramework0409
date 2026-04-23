@@ -1,3 +1,4 @@
+import time
 from typing import List
 
 import pytest
@@ -11,7 +12,7 @@ from api.manager.login_apis import ManagerLoginApi
 from api.seller.goods_apis import AddGoodsApi, GoodsUnderApi, GoodsRecycleApi, GoodsDeleteApi
 from api.seller.login_apis import SellerLoginApi
 from common.db_util import DBUtil
-from common.file_load import load_yaml_file
+from common.file_load import load_yaml_file, write_yaml
 from common.logger import GetLogger
 from common.redis_util import RedisUtil
 from paths_manager import common_yaml_path, redis_yaml_path, db_yaml_path
@@ -129,6 +130,17 @@ def init_order_params(db_init):
     SetOrderAddressIdApi(address_id=address_id).send()
     # 设置付款类型为货到付款
     SetOrderPayTypeApi().send()
+def pytest_terminal_summary(terminalreporter, exitstatus, config):
+    """统计测试结果"""
+    passed = len(terminalreporter.stats.get('passed', []))
+    failed = len(terminalreporter.stats.get('failed', []))
+    error = len(terminalreporter.stats.get('error', []))
+    skipped = len(terminalreporter.stats.get('skipped', []))
+    total = passed+failed+error+skipped
+    # terminalreporter._sessionstarttime 会话开始时间
+    duration = time.time() - terminalreporter._sessionstarttime
+    print('total times:', duration, 'seconds')
+    write_yaml('result.yml',{"total":total,"passed":passed,"failed":failed,"skipped":skipped,"error":error})
 
 if __name__ == '__main__':
     s = 'gw99' # gw10
