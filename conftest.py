@@ -44,7 +44,7 @@ def aalogger_init(worker_id):
 
 
 
-@pytest.fixture(scope='session',autouse=True)
+@pytest.fixture(scope='session',autouse=False)
 def buyer_login(worker_id):# 注意worker_id是pytest-xdist提供的
     # 实例化买家登录的接口类对象，完成调用，提取token，赋值给BaseBuyerApi.buyer_token
     # 没有使用多进程并发时，worker_id的值是master
@@ -65,7 +65,7 @@ def buyer_login(worker_id):# 注意worker_id是pytest-xdist提供的
     BaseBuyerApi.buyer_token = resp.json()['access_token']
     BaseBuyerApi.uid = resp.json()['uid']
 
-@pytest.fixture(scope='session',autouse=True)
+@pytest.fixture(scope='session',autouse=False)
 def seller_login():
     # 实例化卖家登录的接口类对象，完成调用，提取token，赋值给BaseSellerApi.seller_token
     common_info = load_yaml_file(common_yaml_path)
@@ -73,7 +73,7 @@ def seller_login():
     password = common_info['sellerPassword']
     resp = SellerLoginApi(username=username,password=password).send()
     BaseSellerApi.seller_token = resp.json()['access_token']
-@pytest.fixture(scope='session',autouse=True)
+@pytest.fixture(scope='session',autouse=False)
 def manager_login():
     # 实例化管理员登录的接口类对象，完成调用，提取token，赋值给BaseManagerApi.manager_token
     common_info = load_yaml_file(common_yaml_path)
