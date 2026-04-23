@@ -17,6 +17,7 @@ from common.logger import GetLogger
 from common.redis_util import RedisUtil
 from paths_manager import common_yaml_path, redis_yaml_path, db_yaml_path
 
+GLOBAL_START_TIME = time.time()
 
 def pytest_collection_modifyitems(config:"Config",items:List["Item"]):
     # items对象是pytest收集到的所有用例对象
@@ -137,9 +138,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     error = len(terminalreporter.stats.get('error', []))
     skipped = len(terminalreporter.stats.get('skipped', []))
     total = passed+failed+error+skipped
-    # terminalreporter._sessionstarttime 会话开始时间
-    # 只需要这一句！新版 pytest 唯一正确写法
-    duration = time.perf_counter() - float(terminalreporter._session_start)
+    duration = time.time() - GLOBAL_START_TIME
     print('total times:', duration, 'seconds')
     write_yaml('result.yml',{"total":total,"passed":passed,"failed":failed,"skipped":skipped,"error":error})
 
