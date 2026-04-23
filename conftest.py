@@ -138,7 +138,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     skipped = len(terminalreporter.stats.get('skipped', []))
     total = passed+failed+error+skipped
     # terminalreporter._sessionstarttime 会话开始时间
-    duration = time.time() - terminalreporter._sessionstarttime
+    duration = time.time() - terminalreporter._session_start
     print('total times:', duration, 'seconds')
     write_yaml('result.yml',{"total":total,"passed":passed,"failed":failed,"skipped":skipped,"error":error})
 
