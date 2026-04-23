@@ -139,7 +139,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     total = passed+failed+error+skipped
     # terminalreporter._sessionstarttime 会话开始时间
     # 只需要这一句！新版 pytest 唯一正确写法
-    duration = time.time() - float(terminalreporter._session_start)
+    duration = time.perf_counter() - terminalreporter._session_start
     print('total times:', duration, 'seconds')
     write_yaml('result.yml',{"total":total,"passed":passed,"failed":failed,"skipped":skipped,"error":error})
 
