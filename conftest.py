@@ -138,12 +138,8 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
     skipped = len(terminalreporter.stats.get('skipped', []))
     total = passed+failed+error+skipped
     # terminalreporter._sessionstarttime 会话开始时间
-    try:
-        # 新版 pytest (Instant 类型)
-        duration = time.time() - terminalreporter._session_start.timestamp()
-    except:
-        # 旧版 pytest (float 时间戳)
-        duration = time.time() - terminalreporter._sessionstarttime
+    # 只需要这一句！新版 pytest 唯一正确写法
+    duration = time.time() - config._start_time
     print('total times:', duration, 'seconds')
     write_yaml('result.yml',{"total":total,"passed":passed,"failed":failed,"skipped":skipped,"error":error})
 
