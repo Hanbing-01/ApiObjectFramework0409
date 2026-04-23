@@ -98,37 +98,58 @@ class JenkinsStatus:
         method = 'get'
         resp = requests.request(method=method,url=url)
         return resp
+# if __name__ == '__main__':
+#     args = sys.argv
+#     build_url = args[1]
+#     notice_type = args[2]
+#
+#     # ===================== 这里是我加的容错 =====================
+#     try:
+#         resp = JenkinsStatus().send(build_url)
+#         # 如果状态码不是200，直接抛异常
+#         if resp.status_code != 200:
+#             raise Exception(f"Jenkins API 请求失败，状态码：{resp.status_code}")
+#
+#         user = jsonpath.jsonpath(resp.json(), '$..shortDescription')[0]
+#         result = jsonpath.jsonpath(resp.json(), '$..result')[0]
+#         fullDisplayName = jsonpath.jsonpath(resp.json(), '$..fullDisplayName')[0]
+#
+#     except Exception as e:
+#         # 出错了也不让脚本崩！
+#         print(f"获取 Jenkins 信息失败: {e}")
+#         user = "未知用户"
+#         result = "FAILURE"
+#         fullDisplayName = "未知任务 #1"
+#
+#     # ==========================================================
+#
+#     job_name = fullDisplayName.split(' #')[0]
+#     build_number = fullDisplayName.split(' #')[1]
+#
+#     if notice_type == 'wx':
+#         WxNotice().send(job_name, build_number, result, user, build_url)
+#     elif notice_type == 'dd':
+#         DingDingNotice().send(job_name, build_number, result, user, build_url)
+#     elif notice_type == 'feishu':
+#         FeiShuNotice().send(job_name, build_number, result, user, build_url)
+
 if __name__ == '__main__':
-    args = sys.argv
+    args = sys.argv # 表示获取终端执行时传递的参数
     build_url = args[1]
-    notice_type = args[2]
-
-    # ===================== 这里是我加的容错 =====================
-    try:
-        resp = JenkinsStatus().send(build_url)
-        # 如果状态码不是200，直接抛异常
-        if resp.status_code != 200:
-            raise Exception(f"Jenkins API 请求失败，状态码：{resp.status_code}")
-
-        user = jsonpath.jsonpath(resp.json(), '$..shortDescription')[0]
-        result = jsonpath.jsonpath(resp.json(), '$..result')[0]
-        fullDisplayName = jsonpath.jsonpath(resp.json(), '$..fullDisplayName')[0]
-
-    except Exception as e:
-        # 出错了也不让脚本崩！
-        print(f"获取 Jenkins 信息失败: {e}")
-        user = "未知用户"
-        result = "FAILURE"
-        fullDisplayName = "未知任务 #1"
-
-    # ==========================================================
-
+    notice_type = args[2] # 通知类型，是飞书还是钉钉还是企微
+    # job_name = 'apiautotest20230805'
+    # build_number = 3
+    # build_url = 'http://192.168.0.188:8080/job/apiautotest20230805/3'
+    resp = JenkinsStatus().send(build_url)
+    user = jsonpath.jsonpath(resp.json(),'$..shortDescription')[0]
+    result = jsonpath.jsonpath(resp.json(), '$..result')[0]
+    fullDisplayName = jsonpath.jsonpath(resp.json(),'$..fullDisplayName')[0]
+    # apiautotest20230805 #3
     job_name = fullDisplayName.split(' #')[0]
     build_number = fullDisplayName.split(' #')[1]
-
     if notice_type == 'wx':
-        WxNotice().send(job_name, build_number, result, user, build_url)
+        WxNotice().send(job_name,build_number,result,user,build_url)
     elif notice_type == 'dd':
-        DingDingNotice().send(job_name, build_number, result, user, build_url)
+        DingDingNotice().send(job_name,build_number,result,user,build_url)
     elif notice_type == 'feishu':
-        FeiShuNotice().send(job_name, build_number, result, user, build_url)
+        FeiShuNotice().send(job_name,build_number,result,user,build_url)
