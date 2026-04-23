@@ -112,12 +112,12 @@ class JenkinsStatus:
 # ==========================================================================
 
 if __name__ == '__main__':
-    # args = sys.argv
-    # build_url = args[1]
-    # notice_type = args[2]
+    args = sys.argv
+    build_url = args[1]
+    notice_type = args[2]
 
-    build_url = 'http://118.89.124.97:8080/job/apiautotest20260417/49'
-    notice_type = 'feishu'
+    # build_url = 'http://118.89.124.97:8080/job/apiautotest20260417/49'
+    # notice_type = 'feishu'
 
     # ===================== 这里填写你自己的 Jenkins 信息 =====================
     USERNAME = "admin"          # 你的Jenkins账号
